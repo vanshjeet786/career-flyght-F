@@ -1,8 +1,0 @@
-{
-  "buildCommand": "cd careerflyght-frontend-main && npm run build",
-  "devCommand": "cd careerflyght-frontend-main && npm run dev",
-  "installCommand": "cd careerflyght-frontend-main && npm install",
-  "outputDirectory": "careerflyght-frontend-main/.next",
-  "framework": "nextjs",
-  "rootDirectory": "careerflyght-frontend-main"
-}
