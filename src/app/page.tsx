@@ -118,6 +118,76 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* New UX/UI Options Gallery */}
+      <section className="py-24 px-6 relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-3xl">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h2 className="text-4xl font-heading font-bold mb-4">Experimental UI/UX Options</h2>
+              <p className="text-white/60 max-w-xl text-lg">
+                Explore 10 additional distinct UI/UX concepts ranging from classic SaaS to highly creative scrollytelling experiences.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* SaaS Templates */}
+            {[1, 2, 3].map((opt) => (
+              <Link key={opt} href={`/option-${opt}`} className="group block p-6 rounded-2xl border border-gray-800 bg-gray-900/50 hover:bg-gray-800 transition-all hover:border-gray-600">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-2xl font-semibold">Option {opt}</h2>
+                  <span className="text-xs font-medium px-2.5 py-1 bg-blue-500/10 text-blue-400 rounded-full">SaaS Template</span>
+                </div>
+                <p className="text-gray-400 text-sm">Classic dashboard layout, clean data presentation, sidebar navigation.</p>
+              </Link>
+            ))}
+
+            {/* Scrollytelling / Journey */}
+            {[4, 5].map((opt) => (
+              <Link key={opt} href={`/option-${opt}`} className="group block p-6 rounded-2xl border border-gray-800 bg-gray-900/50 hover:bg-gray-800 transition-all hover:border-gray-600">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-2xl font-semibold">Option {opt}</h2>
+                  <span className="text-xs font-medium px-2.5 py-1 bg-purple-500/10 text-purple-400 rounded-full">Journey / Scroll</span>
+                </div>
+                <p className="text-gray-400 text-sm">Aviation theme, scrollytelling, high interactivity, Framer Motion animations.</p>
+              </Link>
+            ))}
+
+            {/* Spatial / Node / Glass */}
+            {[6, 7].map((opt) => (
+              <Link key={opt} href={`/option-${opt}`} className="group block p-6 rounded-2xl border border-gray-800 bg-gray-900/50 hover:bg-gray-800 transition-all hover:border-gray-600">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-2xl font-semibold">Option {opt}</h2>
+                  <span className="text-xs font-medium px-2.5 py-1 bg-emerald-500/10 text-emerald-400 rounded-full">Spatial / Glass</span>
+                </div>
+                <p className="text-gray-400 text-sm">{opt === 6 ? 'Node-based visualization, spatial interface.' : 'Neumorphism, glassmorphism, sleek dark mode.'}</p>
+              </Link>
+            ))}
+
+            {/* Bento / Editorial */}
+            {[8, 9].map((opt) => (
+              <Link key={opt} href={`/option-${opt}`} className="group block p-6 rounded-2xl border border-gray-800 bg-gray-900/50 hover:bg-gray-800 transition-all hover:border-gray-600">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-2xl font-semibold">Option {opt}</h2>
+                  <span className="text-xs font-medium px-2.5 py-1 bg-amber-500/10 text-amber-400 rounded-full">Bento / Editorial</span>
+                </div>
+                <p className="text-gray-400 text-sm">{opt === 8 ? 'Modern Bento Box grid layout, highly modular.' : 'Large typography, magazine/editorial style, bold contrast.'}</p>
+              </Link>
+            ))}
+
+            {/* Gamified / Futuristic */}
+            <Link href={`/option-10`} className="group block p-6 rounded-2xl border border-gray-800 bg-gray-900/50 hover:bg-gray-800 transition-all hover:border-gray-600">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-semibold">Option 10</h2>
+                <span className="text-xs font-medium px-2.5 py-1 bg-rose-500/10 text-rose-400 rounded-full">Gamified Cockpit</span>
+              </div>
+              <p className="text-gray-400 text-sm">Futuristic UI, gamified progression, "Cockpit" dashboard experience.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
