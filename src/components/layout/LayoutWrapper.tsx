@@ -2,9 +2,30 @@
 
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { createClient } from '@/utils/supabase/client';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [user, setUser] = useState<any>(null);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    // Initial check
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [supabase.auth]);
 
   // Paths that shouldn't use the Bento layout
   const noLayoutPaths = ['/whatcanibe', '/ninthbox', '/admin'];
@@ -28,18 +49,44 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           </Link>
 
           <nav className="hidden md:flex bg-gray-100 p-1 rounded-2xl gap-1">
-            <Link href="/" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Overview</Link>
-            <Link href="/dashboard" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Bento Board</Link>
-                        <Link href="/gallery" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Gallery</Link>
+            {!user && (
+              <>
+                <Link href="/" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Overview</Link>
+                <Link href="/pricing" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Plans</Link>
+                <Link href="/about" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">About</Link>
+              </>
+            )}
+
+            {user && (
+              <>
+                <Link href="/dashboard" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Dashboard</Link>
+              </>
+            )}
+
             <Link href="/whatcanibe" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">WhatCanIBe</Link>
             <Link href="/ninthbox" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">9thBox</Link>
-            <Link href="/pricing" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Plans</Link>
-            <Link href="/profile" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Account</Link>
+            <Link href="/gallery" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Gallery</Link>
+
+            {user && (
+              <>
+                <Link href="/pricing" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Plans</Link>
+                <Link href="/profile" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Account</Link>
+              </>
+            )}
           </nav>
 
           <div className="flex items-center gap-4">
-             <Link href="/login" className="text-sm font-bold text-gray-600 hover:text-black">Login</Link>
-             <Link href="/signup" className="text-sm font-bold bg-black text-white px-4 py-2 rounded-xl">Sign Up</Link>
+             {!user ? (
+               <>
+                 <Link href="/login" className="text-sm font-bold text-gray-600 hover:text-black">Login</Link>
+                 <Link href="/signup" className="text-sm font-bold bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition-colors">Sign Up</Link>
+               </>
+             ) : (
+               <div className="flex items-center gap-3">
+                 <span className="text-sm text-gray-500 font-medium">{(user.email as string)?.split('@')[0]}</span>
+                 <button onClick={() => supabase.auth.signOut()} className="text-sm font-bold text-gray-600 hover:text-black">Logout</button>
+               </div>
+             )}
           </div>
         </header>
 

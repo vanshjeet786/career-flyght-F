@@ -45,7 +45,7 @@ export default function UnifiedDashboard() {
     );
   }
 
-  const firstName = profile?.full_name?.split(' ')[0] || profile?.email?.split('@')[0] || "User";
+  const firstName = (profile?.full_name as string)?.split(' ')[0] || (profile?.email as string)?.split('@')[0] || "User";
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
@@ -56,7 +56,7 @@ export default function UnifiedDashboard() {
           <p className="text-gray-500">Your modular career view.</p>
         </div>
         <div className="bg-black text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#E3FF73]"></span> {profile?.level || 'Basic Tier'}
+          <span className="w-2 h-2 rounded-full bg-[#E3FF73]"></span> {(profile?.level as string) || 'Basic Tier'}
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export default function UnifiedDashboard() {
              <div className="text-center text-gray-400">
                <BarChart className="w-12 h-12 mx-auto mb-2 opacity-50" />
                <p className="text-sm font-medium">Radar Chart Visualization Area</p>
-               <p className="text-xs text-gray-400 mt-2">Score: {profile?.score || 0}</p>
+               <p className="text-xs text-gray-400 mt-2">Score: {(profile?.score as number) || 0}</p>
              </div>
           </div>
         </div>
@@ -81,10 +81,10 @@ export default function UnifiedDashboard() {
         <div className="md:col-span-1 md:row-span-1 bg-black text-white rounded-3xl p-6 flex flex-col justify-between">
           <h3 className="font-medium text-gray-400 text-sm">Overall Level</h3>
           <div className="flex items-end gap-2">
-            <span className="text-6xl font-bold tracking-tighter">{profile?.level || 'L1'}</span>
+            <span className="text-6xl font-bold tracking-tighter">{(profile?.level as string) || 'L1'}</span>
             <span className="text-[#E3FF73] text-sm font-bold mb-2">↑ 0.1</span>
           </div>
-          <p className="text-xs text-gray-500 mt-2">{profile?.role || 'User'} Tier</p>
+          <p className="text-xs text-gray-500 mt-2">{(profile?.role as string) || 'User'} Tier</p>
         </div>
 
         {/* Mentoring */}
