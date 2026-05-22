@@ -14,7 +14,11 @@ export default function Navbar() {
 
         <nav className="flex items-center gap-6 text-sm text-gray-300">
 
-          <Link href="/whatcanibe">
+                    <Link href="/gallery" className="hover:text-white transition-colors">
+            Gallery
+          </Link>
+
+          <Link href="/whatcanibe" className="hover:text-white transition-colors">
             WhatCanIBe
           </Link>
 
