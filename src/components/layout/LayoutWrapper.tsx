@@ -30,7 +30,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           <nav className="hidden md:flex bg-gray-100 p-1 rounded-2xl gap-1">
             <Link href="/" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Overview</Link>
             <Link href="/dashboard" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Bento Board</Link>
-            <Link href="/gallery" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Gallery</Link>
+                        <Link href="/gallery" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Gallery</Link>
+            <Link href="/whatcanibe" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">WhatCanIBe</Link>
+            <Link href="/ninthbox" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">9thBox</Link>
             <Link href="/pricing" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Plans</Link>
             <Link href="/profile" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-black">Account</Link>
           </nav>
