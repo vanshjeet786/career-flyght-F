@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import PrototypeExperience, { getPrototypeOrNull } from "@/components/prototypes/PrototypeExperience";
-import { prototypes, sections, type PrototypeSection } from "@/lib/prototypes/data";
+import PrototypeExperience from "@/components/prototypes/PrototypeExperience";
+import { prototypes, sections, type PrototypeSection, getPrototypeOrNull } from "@/lib/prototypes/data";
 
 export function generateStaticParams() {
   return prototypes.flatMap((prototype) =>
