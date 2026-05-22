@@ -42,6 +42,10 @@ export async function updateSession(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/auth") &&
     !request.nextUrl.pathname.startsWith("/prototypes") &&
     !request.nextUrl.pathname.startsWith("/option") &&
+    !request.nextUrl.pathname.startsWith("/dashboard") &&
+    !request.nextUrl.pathname.startsWith("/profile") &&
+    !request.nextUrl.pathname.startsWith("/pricing") &&
+    !request.nextUrl.pathname.startsWith("/gallery") &&
     request.nextUrl.pathname !== "/"
   ) {
     // no user, potentially respond by redirecting the user to the login page
