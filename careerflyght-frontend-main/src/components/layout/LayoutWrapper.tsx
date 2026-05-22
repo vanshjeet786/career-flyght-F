@@ -10,7 +10,8 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
 
-  const hideNavbar = pathname.startsWith("/whatcanibe");
+  // Hide navbar on options pages to give full control to each option
+  const hideNavbar = pathname.startsWith("/whatcanibe") || pathname.startsWith("/option-");
 
   return (
     <>
