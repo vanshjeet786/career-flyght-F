@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { prototypes, sections, type Prototype, type PrototypeSection } from "@/lib/prototypes/data";
+import { prototypes, sections, type PrototypeSection } from "@/lib/prototypes/data";
 
 export default function PrototypeExperience({ conceptSlug, page }: { conceptSlug: string; page: PrototypeSection }) {
   const prototype = useMemo(() => prototypes.find((p) => p.slug === conceptSlug), [conceptSlug]);
@@ -59,8 +59,4 @@ export default function PrototypeExperience({ conceptSlug, page }: { conceptSlug
       </div>
     </main>
   );
-}
-
-export function getPrototypeOrNull(slug: string): Prototype | undefined {
-  return prototypes.find((p) => p.slug === slug);
 }

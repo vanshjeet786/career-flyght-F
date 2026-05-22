@@ -27,3 +27,7 @@ export const prototypes: Prototype[] = [
   { slug: "craft-atelier", name: "Craft Atelier", saasTemplate: false, palette: ["#1C1917", "#D97706", "#FED7AA", "#FAFAF9"], fontMood: "Refined serif with workshop notes sans", spacing: "Crafted modular rhythm and tactile separators", interactionLevel: "moderate", inspiration: ["Portfolio storytelling", "Workshop moodboards", "Material texture overlays"], concept: "Handcrafted journey builder for creative professionals.", features: ["Moodboard uploads", "Milestone scrapbook", "Mentor notes drawer", "Portfolio path cards"] },
   { slug: "civic-lab", name: "Civic Lab", saasTemplate: false, palette: ["#082F49", "#0EA5E9", "#FACC15", "#E0F2FE"], fontMood: "Institutional sans with high-accessibility sizing", spacing: "Clear section dividers and civic-grade readability", interactionLevel: "moderate", inspiration: ["Public service UX clarity", "Accessibility-forward design", "Trust-centric data visuals"], concept: "Community-focused career platform for equitable opportunity mapping.", features: ["Accessibility controls", "Opportunity heatmap", "Community cohorts", "Scholarship alert ticker"] }
 ];
+
+export function getPrototypeOrNull(slug: string): Prototype | undefined {
+  return prototypes.find((p) => p.slug === slug);
+}

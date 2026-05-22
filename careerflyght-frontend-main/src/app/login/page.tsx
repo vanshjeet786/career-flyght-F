@@ -29,7 +29,7 @@ export default function LoginPage() {
         </button>
       </form>
       <div className="mt-4">
-         <p>Don\Don'tapos;t have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
+         <p>Don&apos;t have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
       </div>
     </main>
   );
