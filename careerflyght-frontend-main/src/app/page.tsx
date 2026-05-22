@@ -1,21 +1,29 @@
-import Link from "next/link";
-import { prototypes } from "@/lib/prototypes/data";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
-    <main className="min-h-screen bg-black px-6 py-10 text-white">
-      <div className="mx-auto max-w-6xl">
-        <h1 className="text-4xl font-bold">CareerFlyght UI/UX Prototype Gallery</h1>
-        <p className="mt-3 text-white/80">10 creative directions × 4 interconnected pages each (Home, Dashboard, Pricing, Profile).</p>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {prototypes.map((p) => (
-            <Link key={p.slug} href={`/prototypes/${p.slug}/home`} className="rounded-2xl border border-white/20 bg-white/5 p-5 hover:bg-white/10">
-              <p className="text-xl font-semibold">{p.name}</p>
-              <p className="mt-1 text-sm text-white/80">{p.saasTemplate ? "SaaS Template" : "Creative Concept"}</p>
-            </Link>
-          ))}
+    <main className="min-h-screen p-10">
+      <h1 className="text-5xl font-bold">
+        Home
+      </h1>
+      {user ? (
+        <div className="mt-4">
+          <p>Logged in as: {user.email}</p>
+          <ul className="mt-4 list-disc pl-5">
+            <li><a href="/admin" className="text-blue-500">Go to Admin</a></li>
+            <li><a href="/ninthbox" className="text-blue-500">Go to Ninthbox</a></li>
+            <li><a href="/whatcanibe" className="text-blue-500">Go to What can I be</a></li>
+          </ul>
         </div>
-      </div>
+      ) : (
+        <div className="mt-4">
+          <p>You are not logged in.</p>
+          <a href="/login" className="text-blue-500">Log in</a>
+        </div>
+      )}
     </main>
   );
 }
