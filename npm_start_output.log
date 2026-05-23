@@ -2,17 +2,13 @@
 > careerflyght-frontend@0.1.0 start
 > next start
 
-▲ Next.js 16.2.6
-- Local:         http://localhost:3000
-- Network:       http://192.168.0.2:3000
-✓ Ready in 188ms
-Signup error: Error [AuthApiError]: email rate limit exceeded
-    at b_ (.next/server/chunks/ssr/_0hdm8~i._.js:24:41720)
-    at async b1 (.next/server/chunks/ssr/_0hdm8~i._.js:24:42664)
-    at async b0 (.next/server/chunks/ssr/_0hdm8~i._.js:24:42104)
-    at async cI.signUp (.next/server/chunks/ssr/_0hdm8~i._.js:24:68345)
-    at async f (.next/server/chunks/ssr/_0ivwzec._.js:1:9828) {
-  __isAuthError: true,
-  status: 429,
-  code: 'over_email_send_rate_limit'
+⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
 }

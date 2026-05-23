@@ -22,7 +22,7 @@ export async function signup(formData: FormData) {
 
   if (error) {
     console.error("Signup error:", error);
-    redirect("/error");
+    redirect(`/error?message=${encodeURIComponent(error.message)}`);
   }
 
   revalidatePath("/", "layout");
