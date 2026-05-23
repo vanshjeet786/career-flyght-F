@@ -1,6 +1,27 @@
+"use client";
+
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { login } from "./actions";
 
 export default function LoginPage() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(formData: FormData) {
+    setLoading(true);
+    const result = await login(formData);
+    setLoading(false);
+
+    if (result?.error) {
+      toast.error(result.error);
+    } else if (result?.success) {
+      toast.success("Successfully logged in!");
+      router.push("/dashboard");
+    }
+  }
+
   return (
     <div className="h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-3xl border border-gray-200 shadow-sm">
@@ -12,7 +33,7 @@ export default function LoginPage() {
             Enter your details to access your Bento.
           </p>
         </div>
-        <form className="mt-8 space-y-6">
+        <form action={handleSubmit} className="mt-8 space-y-6">
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
               <label htmlFor="email" className="sr-only">Email address</label>
@@ -40,10 +61,11 @@ export default function LoginPage() {
 
           <div>
             <button
-              formAction={login}
+              disabled={loading}
+              type="submit"
               className="group relative flex w-full justify-center rounded-xl bg-[#E3FF73] px-3 py-3 text-sm font-bold text-black hover:bg-[#d4fa41] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E3FF73] transition-colors shadow-sm"
             >
-              Sign in
+              {loading ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>

@@ -1,6 +1,27 @@
+"use client";
+
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { signup } from "./actions";
 
 export default function SignupPage() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(formData: FormData) {
+    setLoading(true);
+    const result = await signup(formData);
+    setLoading(false);
+
+    if (result?.error) {
+      toast.error(result.error);
+    } else if (result?.success) {
+      toast.success("Successfully signed up!");
+      router.push("/dashboard");
+    }
+  }
+
   return (
     <div className="h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-3xl border border-gray-200 shadow-sm">
@@ -12,7 +33,7 @@ export default function SignupPage() {
             Create an account to start your journey.
           </p>
         </div>
-        <form className="mt-8 space-y-6">
+        <form action={handleSubmit} className="mt-8 space-y-6">
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
               <label htmlFor="full_name" className="sr-only">Full Name</label>
@@ -51,10 +72,11 @@ export default function SignupPage() {
 
           <div>
             <button
-              formAction={signup}
+              disabled={loading}
+              type="submit"
               className="group relative flex w-full justify-center rounded-xl bg-black px-3 py-3 text-sm font-bold text-white hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black transition-colors shadow-sm"
             >
-              Sign up
+              {loading ? "Signing up..." : "Sign up"}
             </button>
           </div>
         </form>

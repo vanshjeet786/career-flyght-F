@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { User, Mail, Briefcase, Lock, Loader2, Save, UploadCloud } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 
@@ -125,11 +127,7 @@ export default function ProfilePage() {
           <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-8 shadow-sm">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-100 dark:border-zinc-800 pb-4">Personal Details</h3>
 
-            {message.text && (
-              <div className={`p-4 rounded-xl mb-6 text-sm font-medium ${message.type === 'success' ? 'bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-400' : 'bg-red-50 text-red-800 dark:bg-red-900/30 dark:text-red-400'}`}>
-                {message.text}
-              </div>
-            )}
+
 
             <form onSubmit={handleSubmit} className="space-y-6">
 
