@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
@@ -9,28 +9,37 @@ import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
   useEffect(() => {
+    const handleAuth = (sessionUser: any) => {
+      setUser(sessionUser);
+      setLoading(false);
+
+      const isAuthRoute = ['/login', '/signup', '/forgot-password', '/resend-confirmation'].includes(pathname);
+      if (sessionUser && isAuthRoute) {
+        router.push('/dashboard');
+      }
+    };
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        setUser(session?.user ?? null);
-        setLoading(false);
+        handleAuth(session?.user ?? null);
       }
     );
 
-    // Initial check
+    // Initial check and re-check on navigation
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
+      handleAuth(session?.user ?? null);
     });
 
     return () => {
       authListener.subscription.unsubscribe();
     };
-  }, [supabase.auth]);
+  }, [supabase.auth, pathname, router]);
 
   // Paths that shouldn't use the Bento layout at all
   const noLayoutPaths = ['/whatcanibe', '/ninthbox', '/admin'];
@@ -91,7 +100,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                <div className="flex items-center gap-3">
                  <Link href="/dashboard" className="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline">Go to App</Link>
                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">{(user.email as string)?.split('@')[0]}</span>
-                 <button onClick={() => supabase.auth.signOut()} className="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">Logout</button>
+                 <button onClick={async () => { await supabase.auth.signOut(); router.push('/login'); router.refresh(); }} className="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">Logout</button>
                </div>
              )}
           </div>
