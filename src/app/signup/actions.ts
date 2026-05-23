@@ -22,9 +22,9 @@ export async function signup(formData: FormData) {
 
   if (error) {
     console.error("Signup error:", error);
-    redirect("/error");
+    return { error: error.message };
   }
 
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+  return { success: true };
 }

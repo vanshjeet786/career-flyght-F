@@ -3,9 +3,22 @@
 import { motion, useScroll,  } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Plane, Target, Zap, Users, Compass, Shield, BarChart3 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function Home() {
+
+  const [randomText, setRandomText] = useState("Construct");
+  const words = ["Construct", "Elevate", "Optimize", "Analyze", "Design"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRandomText(words[Math.floor(Math.random() * words.length)]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const springTransition = { type: "spring" as const, stiffness: 300, damping: 45 };
+
   const containerRef = useRef(null);
   const { } = useScroll({
     target: containerRef,
@@ -13,14 +26,16 @@ export default function Home() {
   });
 
   return (
-    <div className="flex flex-col gap-32 pb-32" ref={containerRef}>
+    <div className="flex flex-col gap-32 pb-32 relative" ref={containerRef}>
+      {/* Dynamic Grid Background */}
+      <div className="absolute inset-0 z-[-1] min-h-screen bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
       {/* Hero Section (Original Bento but enhanced for top of page) */}
       <section className="min-h-[80vh] flex items-center justify-center pt-10">
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 h-[800px] w-full max-w-7xl">
           {/* Main Hero block */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={springTransition}
             className="md:col-span-2 md:row-span-2 bg-[#E3FF73] rounded-3xl p-10 flex flex-col justify-between overflow-hidden relative"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
@@ -29,8 +44,17 @@ export default function Home() {
               <ArrowUpRight className="w-8 h-8 text-black" />
             </div>
             <div className="relative z-10">
-              <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-6">
-                Construct <br/> your legacy.
+              <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-6 flex flex-col">
+                <motion.span
+                  key={randomText}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {randomText}
+                </motion.span>
+                <span>your legacy.</span>
               </h1>
               <p className="text-black/70 text-lg max-w-md mb-8 font-medium">
                 Modular career development. Analyze your skills, connect with mentors, and upgrade your trajectory with data-driven precision.
@@ -48,7 +72,7 @@ export default function Home() {
 
           {/* Top Right 1 */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ ...springTransition, delay: 0.1 }}
             className="md:col-span-1 md:row-span-1 bg-black rounded-3xl p-8 text-white flex flex-col justify-between group overflow-hidden relative"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -61,7 +85,7 @@ export default function Home() {
 
           {/* Top Right 2 */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ ...springTransition, delay: 0.2 }}
             className="md:col-span-1 md:row-span-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 text-white flex flex-col relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:scale-110 group-hover:opacity-30 transition-all duration-700">
@@ -78,7 +102,7 @@ export default function Home() {
 
           {/* Middle Right */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.3 }}
             className="md:col-span-1 md:row-span-1 bg-white rounded-3xl p-8 border border-gray-200 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
           >
             <Users className="w-8 h-8 text-blue-500" />
@@ -90,7 +114,7 @@ export default function Home() {
 
           {/* Bottom Left */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...springTransition, delay: 0.4 }}
             className="md:col-span-2 md:row-span-1 bg-white rounded-3xl p-8 border border-gray-200 flex items-center justify-between hover:shadow-xl transition-shadow duration-300 group"
           >
             <div>
@@ -104,7 +128,7 @@ export default function Home() {
 
           {/* Bottom Right */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.5 }}
+            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...springTransition, delay: 0.5 }}
             className="h-full"
           >
             <Link href="/signup" className="h-full bg-gray-900 rounded-3xl p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:bg-black transition-colors group relative overflow-hidden">
@@ -125,7 +149,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={springTransition}
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">The architecture of success.</h2>
@@ -167,7 +191,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={springTransition}
             className="relative z-10 max-w-xl"
           >
             <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white border border-white/20 text-sm font-semibold mb-6">
@@ -233,7 +257,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={springTransition}
         >
           <h2 className="text-5xl md:text-6xl font-bold tracking-tighter mb-8">Ready to take flight?</h2>
           <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
