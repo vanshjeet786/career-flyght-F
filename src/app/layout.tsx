@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,8 +15,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "CareerFlyght - UI/UX Prototype Gallery",
-  description: "10 creative directions × 4 interconnected pages each (Home, Dashboard, Pricing, Profile)",
+  title: "CareerFlyght",
+  description: "Your modular career view.",
 };
 
 export default function RootLayout({
@@ -27,9 +28,18 @@ export default function RootLayout({
     <html
       lang="en"
       className={`font-sans ${inter.variable} ${outfit.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col"><LayoutWrapper>{children}</LayoutWrapper>
-</body>
+      <body className="min-h-full flex flex-col bg-[#f0f0f0] dark:bg-zinc-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
