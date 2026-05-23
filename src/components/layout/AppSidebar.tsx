@@ -11,7 +11,7 @@ export function AppSidebar() {
   const supabase = createClient();
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await supabase.auth.signOut().then(() => { window.location.href = '/login'; });
     window.location.href = "/";
   };
 
