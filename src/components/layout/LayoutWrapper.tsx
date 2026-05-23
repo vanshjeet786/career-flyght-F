@@ -82,15 +82,22 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             <span className="font-bold text-xl tracking-tight dark:text-white">CareerFlyght</span>
           </Link>
 
-          <nav className="hidden md:flex bg-gray-100 dark:bg-zinc-800 p-1 rounded-2xl gap-1 items-center">
-            <Link href="/" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Overview</Link>
-            <Link href="/pricing" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Plans</Link>
-            <Link href="/about" className="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">About</Link>
+          <nav className="hidden xl:flex bg-gray-100 dark:bg-zinc-800 p-1 rounded-2xl gap-1 items-center">
+            <Link href="/" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Overview</Link>
+            <Link href="/pricing" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Plans</Link>
+            <Link href="/about" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">About</Link>
+            <Link href="/what-is-whatcanibe" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">What is WhatCanIBe</Link>
+            <Link href="/what-is-ninthbox" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">What is 9thBox</Link>
+            <Link href="/talk-to-us" className="px-3 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-zinc-700 hover:shadow-sm transition-all text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Talk To Us</Link>
             <div className="w-px h-4 bg-gray-300 dark:bg-zinc-600 mx-2" />
             <ThemeToggle />
           </nav>
 
           <div className="flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-2 mr-2">
+              <Link href="/whatcanibe" className="text-xs font-bold bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">WhatCanIBe</Link>
+              <Link href="/ninthbox" className="text-xs font-bold bg-indigo-600 text-white px-3 py-1.5 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">9thBox</Link>
+            </div>
              {!user ? (
                <>
                  <Link href="/login" className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">Login</Link>
