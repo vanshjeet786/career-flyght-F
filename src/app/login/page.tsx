@@ -57,6 +57,13 @@ export default function LoginPage() {
                 placeholder="Password"
               />
             </div>
+            <div className="flex items-center justify-between mt-2">
+              <div className="text-sm">
+                <a href="/forgot-password" className="font-semibold text-black hover:underline">
+                  Forgot password?
+                </a>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -74,6 +81,12 @@ export default function LoginPage() {
             Don't have an account?{' '}
             <a href="/signup" className="font-bold text-black hover:underline">
               Sign up
+            </a>
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            Didn't receive confirmation email?{' '}
+            <a href="/resend-confirmation" className="font-bold text-black hover:underline">
+              Resend confirmation
             </a>
           </p>
         </div>
