@@ -2,7 +2,7 @@
 
 import { motion, useScroll,  } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Plane, Target, Zap, Users, Compass, Shield, BarChart3 } from "lucide-react";
+import { ArrowUpRight, Plane, Target, Zap, Users, Compass, Shield, BarChart3, GraduationCap, Briefcase, Heart, Lightbulb, TrendingUp, MessageSquare, Building2 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
 export default function Home() {
@@ -175,6 +175,198 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
               <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+
+      {/* WhatCanIBe Section */}
+      <section className="max-w-7xl mx-auto w-full px-4 pt-16">
+        <div className="bg-blue-600 rounded-[3rem] p-8 md:p-16 overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-400/40 via-blue-600 to-blue-600" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={springTransition}
+            className="relative z-10 flex flex-col md:flex-row items-center gap-12"
+          >
+            <div className="flex-1 text-white">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                  <GraduationCap className="w-8 h-8 text-white" />
+                </div>
+                <span className="text-xl font-bold tracking-wider uppercase text-white/80">For Students & Graduates</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">WhatCanIBe</h2>
+              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                Your journey starts here. Discover your strengths, identify your ideal career paths, and build the foundational skills needed to launch a successful career. We provide the tools and guidance for the critical early stages of your professional life.
+              </p>
+              <Link href="/what-is-whatcanibe" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-full font-bold hover:bg-blue-50 transition-colors shadow-lg">
+                Explore WhatCanIBe
+                <ArrowUpRight className="w-5 h-5" />
+              </Link>
+            </div>
+            <div className="flex-1 w-full relative">
+               <div className="aspect-square bg-gradient-to-tr from-white/10 to-white/5 rounded-full border border-white/20 p-8 flex items-center justify-center relative overflow-hidden backdrop-blur-sm shadow-2xl">
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80')] bg-cover bg-center mix-blend-overlay opacity-50" />
+                 <div className="relative z-10 text-center">
+                    <div className="text-6xl font-bold text-white mb-2">1M+</div>
+                    <div className="text-blue-100 font-medium">Students Goal</div>
+                 </div>
+               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 9thBox Section */}
+      <section className="max-w-7xl mx-auto w-full px-4 pt-8">
+        <div className="bg-zinc-900 rounded-[3rem] p-8 md:p-16 overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/40 via-zinc-900 to-zinc-900" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={springTransition}
+            className="relative z-10 flex flex-col md:flex-row-reverse items-center gap-12"
+          >
+            <div className="flex-1 text-white">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
+                  <Briefcase className="w-8 h-8 text-indigo-400" />
+                </div>
+                <span className="text-xl font-bold tracking-wider uppercase text-zinc-400">For Senior Executives</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">9thBox</h2>
+              <p className="text-xl text-zinc-300 mb-8 leading-relaxed">
+                Navigate the complexities of top-tier management. 9thBox offers exclusive, customized plans including experiential leadership simulations, executive mobility strategies, and high-end profile building to cement your legacy.
+              </p>
+              <Link href="/what-is-ninthbox" className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-500 transition-colors shadow-lg">
+                Read More about 9thBox
+                <ArrowUpRight className="w-5 h-5" />
+              </Link>
+            </div>
+            <div className="flex-1 w-full relative">
+               <div className="aspect-video bg-gradient-to-br from-indigo-500/20 to-zinc-800/50 rounded-3xl border border-indigo-500/20 p-8 flex flex-col justify-center relative overflow-hidden backdrop-blur-md shadow-2xl">
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80')] bg-cover bg-center mix-blend-overlay opacity-30" />
+                 <div className="relative z-10 space-y-4">
+                    <div className="h-2 w-1/3 bg-indigo-400 rounded-full" />
+                    <div className="h-2 w-1/2 bg-white/20 rounded-full" />
+                    <div className="h-2 w-1/4 bg-white/20 rounded-full" />
+                 </div>
+               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Our Objective Section */}
+      <section className="max-w-4xl mx-auto w-full px-4 pt-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={springTransition}
+          className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-[3rem] p-12 md:p-20 shadow-xl"
+        >
+          <div className="w-16 h-16 bg-[#E3FF73] rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+            <Heart className="w-8 h-8 text-black" fill="currentColor" />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">Our Objective</h2>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+            "We commit to support every individual and organization towards their development to building a successful career and thereby providing all others around them a cyclical upward growth."
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Idea Behind & Market Reality */}
+      <section className="max-w-7xl mx-auto w-full px-4 pt-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={springTransition}
+            className="bg-gray-50 dark:bg-zinc-800/50 rounded-[2.5rem] p-10 border border-gray-100 dark:border-zinc-700/50"
+          >
+            <div className="w-12 h-12 bg-black dark:bg-white rounded-2xl flex items-center justify-center mb-8">
+              <Lightbulb className="w-6 h-6 text-white dark:text-black" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">The Idea Behind CareerFlyght</h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg mb-6">
+              The modern career is no longer a linear ladder; it's a dynamic, multi-directional journey. We recognized that professionals needed more than just job boards—they needed a comprehensive, data-driven framework to navigate transitions, build personal brands, and continuously upskill. CareerFlyght was born to provide that structured, yet adaptable, pathway to success.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={springTransition}
+            className="bg-gray-50 dark:bg-zinc-800/50 rounded-[2.5rem] p-10 border border-gray-100 dark:border-zinc-700/50"
+          >
+            <div className="w-12 h-12 bg-black dark:bg-white rounded-2xl flex items-center justify-center mb-8">
+              <TrendingUp className="w-6 h-6 text-white dark:text-black" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Market Reality</h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg mb-6">
+              In today's fast-paced corporate environment, faster decision making differentiates those moving up from those staying stagnant. The key levers for managing this—innovation, research, data management, and emotional stabilization—require constant refinement. We equip you to become a proactive problem solver in a market that demands continuous evolution.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="max-w-7xl mx-auto w-full px-4 pt-24 pb-12">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">What our partners have to say</h2>
+          <p className="text-xl text-gray-500 dark:text-gray-400">Trusted by industry leaders and ambitious professionals globally.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              quote: "CareerFlyght provided the exact framework I needed to transition from middle management to a CXO role. Their data-driven insights are unmatched.",
+              author: "Sarah J.",
+              role: "Chief Marketing Officer",
+              company: "Global Tech Inc."
+            },
+            {
+              quote: "The personalized coaching and profile building transformed my career trajectory. I'm now earning 40% more and doing work I truly love.",
+              author: "Michael R.",
+              role: "VP of Engineering",
+              company: "Innovate Solutions"
+            },
+            {
+              quote: "As an MSME, using CareerFlyght's tools helped us identify and retain top talent, significantly improving our operational speed and execution.",
+              author: "David Chen",
+              role: "Founder & CEO",
+              company: "NextGen Logistics"
+            }
+          ].map((testimonial, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ ...springTransition, delay: i * 0.1 }}
+              className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-8 rounded-3xl relative"
+            >
+              <MessageSquare className="w-8 h-8 text-gray-300 dark:text-zinc-700 mb-6" />
+              <p className="text-gray-700 dark:text-gray-300 italic mb-8 relative z-10 leading-relaxed">
+                "{testimonial.quote}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gray-200 dark:bg-zinc-800 rounded-full flex items-center justify-center font-bold text-gray-600 dark:text-gray-400">
+                  {testimonial.author.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-bold">{testimonial.author}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}, {testimonial.company}</div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
